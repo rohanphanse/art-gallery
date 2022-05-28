@@ -1,5 +1,5 @@
-import { Artwork, artworks } from "./model";
-import { context } from "near-sdk-as";
+import { Artwork, artworks, hearts } from "./model";
+import { PersistentVector, context } from "near-sdk-as";
 
 export function setArtwork(artwork: Artwork): void {
     const storedArtwork = artworks.get(artwork.id);
@@ -28,3 +28,21 @@ export function deleteArtwork(id: string): void {
     artworks.delete(id);
 }
 
+export function heartArtwork(artworkId: string) {
+    const artwork = artworks.get(artworkId);
+    if (artwork === null) {
+        throw new Error(`Cannot find artwork with id ${artworkId}!`);
+    }
+    let heartsList = hearts.get(artworkId, null);
+    if (heartsList === null) {
+        heartsList = new PersistentVector<string>(artworkId)
+        hearts.set(artworkId, heartsList);
+    }
+    for (let i = 0; i < heartsList.length; i++) {
+        if (heartsList[i] === context.sender) {
+            throw new Error(`Already hearted artwork!`);
+        }
+    }
+    heartsList.push(context.sender);
+    artwork.incrementHearts();
+}
