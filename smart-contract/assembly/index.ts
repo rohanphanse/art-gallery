@@ -6,14 +6,17 @@ export function setArtwork(artwork: Artwork): void {
     if (storedArtwork !== null) {
         throw new Error(`An artwork with id ${artwork.id} already exists!`);
     }
+    if (artwork.id.length > 12) {
+        throw new Error(`Id ${artwork.id} is too long! Must be 12 characters or less.`)
+    }
     artworks.set(artwork.id, Artwork.fromPayload(artwork));
 }
 
-export function getProduct(id: string): Artwork | null {
+export function getArtwork(id: string): Artwork | null {
     return artworks.get(id);
 }
 
-export function getProducts(): Artwork[] {
+export function getArtworks(): Artwork[] {
     return artworks.values();
 }
 
@@ -28,7 +31,7 @@ export function deleteArtwork(id: string): void {
     artworks.delete(id);
 }
 
-export function heartArtwork(artworkId: string) {
+export function heartArtwork(artworkId: string): void {
     const artwork = artworks.get(artworkId);
     if (artwork === null) {
         throw new Error(`Cannot find artwork with id ${artworkId}!`);

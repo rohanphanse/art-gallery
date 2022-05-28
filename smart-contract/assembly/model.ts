@@ -1,5 +1,4 @@
 import { PersistentUnorderedMap, PersistentMap, PersistentVector, context } from "near-sdk-as";
-import { nanoid } from "nanoid";
 
 @nearBindgen
 export class Artwork {
@@ -13,11 +12,11 @@ export class Artwork {
 
     public static fromPayload(payload: Artwork): Artwork {
         const artwork = new Artwork();
-        artwork.id = nanoid(6);
+        artwork.id = payload.id;
         artwork.name = payload.name;
         artwork.description = payload.description;
         artwork.image = payload.image;
-        artwork.hearts = payload.hearts;
+        artwork.hearts = 0;
         artwork.owner = context.sender;
         artwork.categories = payload.categories;
         return artwork;

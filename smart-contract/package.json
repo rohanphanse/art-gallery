@@ -9,13 +9,6 @@
   "keywords": [],
   "author": "Rohan Phanse",
   "license": "ISC",
-  "dependencies": {
-    "asbuild": "^0.2.0",
-    "assemblyscript": "^0.20.6",
-    "nanoid": "^3.3.4",
-    "near-cli": "^3.3.1",
-    "yarn": "^1.22.18"
-  },
   "devDependencies": {
     "near-sdk-as": "^3.2.3"
   },
