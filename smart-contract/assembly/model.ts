@@ -1,4 +1,4 @@
-import { PersistentUnorderedMap, context } from "near-sdk-as";
+import { PersistentUnorderedMap, PersistentMap, PersistentVector, context } from "near-sdk-as";
 
 @nearBindgen
 export class Artwork {
@@ -28,3 +28,4 @@ export class Artwork {
 }
 
 export const artworks = new PersistentUnorderedMap<string, Artwork>("a");
+export const hearts = new PersistentMap<string, PersistentVector<string>>;
