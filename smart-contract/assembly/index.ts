@@ -1,13 +1,13 @@
 import { Artwork, artworks, hearts } from "./model";
-import { PersistentVector, context } from "near-sdk-as";
+import { PersistentVector, PersistentMap, context } from "near-sdk-as";
 
 export function setArtwork(artwork: Artwork): void {
     const storedArtwork = artworks.get(artwork.id);
     if (storedArtwork !== null) {
         throw new Error(`An artwork with id ${artwork.id} already exists!`);
     }
-    if (artwork.id.length > 12) {
-        throw new Error(`Id ${artwork.id} is too long! Must be 12 characters or less.`)
+    if (artwork.id.length > 6 || artwork.id.length < 1) {
+        throw new Error(`Id length must be 6 characters or less!`)
     }
     artworks.set(artwork.id, Artwork.fromPayload(artwork));
 }
@@ -23,29 +23,31 @@ export function getArtworks(): Artwork[] {
 export function deleteArtwork(id: string): void {
     const artwork = artworks.get(id);
     if (artwork === null) {
-        throw new Error(`Cannot find artwork with id ${id}!`);
+        throw new Error(`Cannot find artwork with id ${id}`);
     }
-    if (artwork.owner !== context.sender) {
-        throw new Error("Only owners can delete their own artworks!");
+    // After extensive testing, !== does not work, but != and .toString() works
+    if (artwork.owner.toString() != context.sender.toString()) {
+        throw new Error(`Only owners can delete their own artworks!`);
     }
     artworks.delete(id);
 }
 
-export function heartArtwork(artworkId: string): void {
-    const artwork = artworks.get(artworkId);
+export function heartArtwork(id: string): void {
+    const artwork = artworks.get(id);
     if (artwork === null) {
-        throw new Error(`Cannot find artwork with id ${artworkId}!`);
+        throw new Error(`Cannot find artwork with id ${id}`);
     }
-    let heartsList = hearts.get(artworkId, null);
+    let heartsList = hearts.get(id, null);
     if (heartsList === null) {
-        heartsList = new PersistentVector<string>(artworkId)
-        hearts.set(artworkId, heartsList);
+        heartsList = new PersistentVector<string>(`h${id}`);
+        hearts.set(id, heartsList);
     }
     for (let i = 0; i < heartsList.length; i++) {
-        if (heartsList[i] === context.sender) {
+        if (heartsList[i].toString() == context.sender.toString()) {
             throw new Error(`Already hearted artwork!`);
         }
     }
     heartsList.push(context.sender);
     artwork.incrementHearts();
+    artworks.set(artwork.id, artwork);
 }
