@@ -71,7 +71,7 @@ function App() {
 
     return (
         <>
-            <i>Decentralized Art Gallery by Rohan Phanse</i>
+            <div className = "title">Decentralized Art Gallery by Rohan Phanse</div>
             {account.accountId ? (
                 <>
                     <div>{account.accountId}</div>
@@ -87,8 +87,7 @@ function App() {
                                     <div>{artwork.id}</div>
                                     <div>{artwork.owner}</div>
                                     <button onClick = {async () => await heartOrUnheartArtworkAndHandleError(artwork.id)}>{artwork.hearts} ❤️</button>
-                                    <button onClick = {async () => await deleteArtworkAndHandleError(artwork.id)}>❌</button>
-                                </div>
+                                    {account.accountId === artwork.owner ? <button onClick = {async () => await deleteArtworkAndHandleError(artwork.id)}>❌</button> : ""}                                </div>
                             ))}
                         </div>
                     </div>
@@ -104,6 +103,10 @@ function App() {
                 <button onClick={login}>CONNECT WALLET</button>
             )}
             <style jsx>{`
+                .title {
+                    font-style: italic;
+                }
+
                 .center {
                     display: flex;
                     flex-direction: row;

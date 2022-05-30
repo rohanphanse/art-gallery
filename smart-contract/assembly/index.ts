@@ -9,6 +9,16 @@ export function setArtwork(artwork: Artwork): void {
     if (artwork.id.length > 6 || artwork.id.length < 1) {
         throw new Error(`Id length must be 6 characters or less!`)
     }
+    let count = 0;
+    let values = artworks.values();
+    for (let i = 0; i < values.length; i++) {
+        if (values[i].owner.toString() == context.sender.toString()) {
+            count++;
+        }
+    }
+    if (count >= 10) {
+        throw new Error("Maximum number of 10 artworks can be uploaded!")
+    }
     artworks.set(artwork.id, Artwork.fromPayload(artwork));
 }
 

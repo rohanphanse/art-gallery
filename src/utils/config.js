@@ -1,4 +1,4 @@
-const CONTRACT_NAME = process.env.CONTRACT_NAME || "art-gallery.roar123.testnet"; 
+const CONTRACT_NAME = process.env.CONTRACT_NAME || "art-gallery2.roar123.testnet"; 
 
 export default function environment(env) {
     switch (env) {
