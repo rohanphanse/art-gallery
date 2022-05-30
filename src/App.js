@@ -29,16 +29,47 @@ function App() {
             {account.accountId ? (
                 <>
                     Balance: {balance} NEAR
-                    {artworks.map((artwork) => (
-                        <div className = "artwork">{artwork.name}</div>
-                    ))}
+                    <div className = "center">
+                        <div className = "artworks">
+                            {artworks.map((artwork) => (
+                                <div className = "artwork">
+                                    <img src = {artwork.image} />
+                                    {artwork.name}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                     <button onClick={logout}>LOG OUT</button>
                 </>
             ) : (
                 <button onClick={login}>CONNECT WALLET</button>
             )}
             <style jsx>{`
+                .center {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                }
+
+                .artworks {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    width: 600px;
+                    grid-gap: 20px;
+                    align-items: center;
+                }
+
                 .artwork {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .artwork img {
+                    width: 200px;
+                    height: 200px;
+                    object-fit: contain;
                 }
             `}</style>
         </>
