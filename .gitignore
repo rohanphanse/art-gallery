@@ -7,3 +7,5 @@ node_modules
 
 # React
 build
+
+assembly/build

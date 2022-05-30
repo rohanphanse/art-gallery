@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 import { initializeContract } from "./utils/near";
 
 window.nearInitPromise = initializeContract()
@@ -14,5 +13,3 @@ window.nearInitPromise = initializeContract()
         );
     })
     .catch(console.error);
-
-reportWebVitals();
