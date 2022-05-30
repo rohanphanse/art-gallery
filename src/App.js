@@ -61,6 +61,14 @@ function App() {
         }
     }
 
+    function sortByHearts(artworks) {
+        const copy = [...artworks];
+        console.log(copy)
+        copy.sort((a, b) => b.hearts - a.hearts);
+        console.log(copy)
+        return copy;
+    }
+
     return (
         <>
             <i>Decentralized Art Gallery by Rohan Phanse</i>
@@ -71,7 +79,7 @@ function App() {
                     <button onClick={logout}>LOG OUT</button>
                     <div className = "center">
                         <div className = "artworks">
-                            {artworks.map((artwork) => (
+                            {sortByHearts(artworks).map((artwork) => (
                                 <div className = "artwork" key = {artwork.id}>
                                     <img src = {artwork.image} alt = {artwork.name} />
                                     <div>{artwork.name}</div>
