@@ -4,3 +4,6 @@ node_modules
 # Replit files
 .replit
 .breakpoints
+
+# Next 
+.next

@@ -1,5 +1,5 @@
 import { Artwork, artworks, hearts } from "./model";
-import { PersistentVector, PersistentMap, context } from "near-sdk-as";
+import { PersistentVector, context } from "near-sdk-as";
 
 export function setArtwork(artwork: Artwork): void {
     const storedArtwork = artworks.get(artwork.id);
