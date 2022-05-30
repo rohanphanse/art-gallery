@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect, useCallback } from "react";
+import { accountBalance, login, logout } from "./utils/near";
+import { getArtworks } from "./utils/contract";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const account = window.walletConnection.account();
+    // Artworks
+    const [artworks, updateArtworks] = useState([]);
+    const fetchArtworks = useCallback(async () => {
+        if (account.accountId) {
+            updateArtworks(await getArtworks());
+        }
+    }, [account.accountId]);
+    useEffect(() => {
+        fetchArtworks();
+    }, [fetchArtworks]);
+    // Balance
+    const [balance, updateBalance] = useState("0");
+    const fetchBalance = useCallback(async () => {
+        if (account.accountId) {
+            updateBalance(await accountBalance());
+        }
+    }, [account.accountId]);
+    useEffect(() => {
+        fetchBalance();
+    }, [fetchBalance])
+    return (
+        <>
+            {account.accountId ? (
+                <>
+                    Balance: {balance} NEAR
+                    {artworks.map((artwork) => (
+                        <div className = "artwork">{artwork.name}</div>
+                    ))}
+                    <button onClick={logout}>LOG OUT</button>
+                </>
+            ) : (
+                <button onClick={login}>CONNECT WALLET</button>
+            )}
+            <style jsx>{`
+                .artwork {
+                }
+            `}</style>
+        </>
+    );
 }
 
 export default App;

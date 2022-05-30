@@ -14,7 +14,7 @@ near deploy --accountId=art-gallery.roar123.testnet --wasmFile=build/release/art
 
 Set artwork
 ```
-near call art-gallery.roar123.testnet setArtwork "{\"artwork\": { \"id\":\"abc123\",\"name\":\"Mountain\",\"description\":\"A grand, majestic mountain!\",\"image\":\"https://m.media-amazon.com/images/I/61bV3NqYQYL._AC_SL1001_.jpg\",\"categories\":\"mountain, montagne\"}}" --accountId=roar123.testnet
+near call art-gallery.roar123.testnet setArtwork "{\"artwork\": { \"id\":\"d3rf43\",\"name\":\"Mountain!\",\"description\":\"A grand, majestic mountain!\",\"image\":\"https://m.media-amazon.com/images/I/61bV3NqYQYL._AC_SL1001_.jpg\",\"categories\":\"mountain, montagne\"}}" --accountId=roar123.testnet
 ```
 
 Get artwork by id
