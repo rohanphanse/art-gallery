@@ -14,7 +14,7 @@ near deploy --accountId=art-gallery.roar123.testnet --wasmFile=build/release/art
 
 Set artwork
 ```
-near call art-gallery.roar123.testnet setArtwork "{\"artwork\": { \"id\":\"8fdh8e\",\"name\":\"Landscape #3\",\"description\":\"My favorite painting 😍, by Camille Pissarro\",\"image\":\"https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Camille_Pissarro_-_Paisaje_tropical.jpg/1280px-Camille_Pissarro_-_Paisaje_tropical.jpg\",\"categories\":\"je ne sais pas\"}}" --accountId=roar123.testnet
+near call art-gallery.roar123.testnet setArtwork "{\"artwork\": { \"id\":\"bo\",\"name\":\"Bo-Katan\",\"description\":\"The legendary Mandalorian Bo-Katan!!!\",\"image\":\"https://pbs.twimg.com/media/EUs6PZuUEAAGBEq.jpg\",\"categories\":\"star wars\"}}" --accountId=mycontract.roar123.testnet
 ```
 
 Get artwork by id
@@ -29,10 +29,10 @@ near view art-gallery.roar123.testnet getArtworks
 
 Delete artwork by id
 ```
-near call art-gallery.roar123.testnet deleteArtwork "{\"id\": \"abc123\"}" --accountId=roar123.testnet
+near call art-gallery.roar123.testnet deleteArtwork "{\"id\": \"abc123\"}" --accountId=arjun.roar123.testnet
 ```
 
-Heart artwork
+Heart or unheart artwork
 ```
-near call art-gallery.roar123.testnet heartArtwork "{\"id\": \"n2\"}" --accountId=roar123.testnet
+near call art-gallery.roar123.testnet heartOrUnheartArtwork "{\"id\": \"n2\"}" --accountId=roar123.testnet
 ```

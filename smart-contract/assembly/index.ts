@@ -32,7 +32,7 @@ export function deleteArtwork(id: string): void {
     artworks.delete(id);
 }
 
-export function heartArtwork(id: string): void {
+export function heartOrUnheartArtwork(id: string): void {
     const artwork = artworks.get(id);
     if (artwork === null) {
         throw new Error(`Cannot find artwork with id ${id}`);
@@ -44,10 +44,13 @@ export function heartArtwork(id: string): void {
     }
     for (let i = 0; i < heartsList.length; i++) {
         if (heartsList[i].toString() == context.sender.toString()) {
-            throw new Error(`Already hearted artwork!`);
+            heartsList.swap_remove(i);
+            artwork.hearts--;
+            artworks.set(artwork.id, artwork);
+            return;
         }
     }
     heartsList.push(context.sender);
-    artwork.incrementHearts();
+    artwork.hearts++;
     artworks.set(artwork.id, artwork);
 }

@@ -21,10 +21,6 @@ export class Artwork {
         artwork.categories = payload.categories;
         return artwork;
     }
-
-    public incrementHearts(): void {
-        this.hearts = this.hearts + 1;
-    }
 }
 
 export const artworks = new PersistentUnorderedMap<string, Artwork>("a");

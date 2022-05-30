@@ -18,7 +18,7 @@ export async function initializeContract() {
         nearEnv.contractName,
         {
             viewMethods: ["getArtwork", "getArtworks"],
-            changeMethods: ["setArtwork", "deleteArtwork", "heartArtwork"],
+            changeMethods: ["setArtwork", "deleteArtwork", "heartOrUnheartArtwork"],
         }
     );
 }
