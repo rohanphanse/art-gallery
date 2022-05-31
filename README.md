@@ -31,7 +31,7 @@ Once you're logged in, you will see your account ID and balance in the top-left 
 
 <img src = "https://raw.githubusercontent.com/rohanphanse/art-gallery/417e440d69aa3d395495d278c6f3bdb2b6f65c90/public/images/artworks.png" alt = "View and Heart Artworks" />
 
-At the bottom of the page, you will see a bunch of inputs, which can use to upload your own artworks to the gallery. And that's it!
+At the bottom of the page, you will see a bunch of inputs, which you can use to upload your own artworks to the gallery. And that's it!
 
 <img src = "https://raw.githubusercontent.com/rohanphanse/art-gallery/417e440d69aa3d395495d278c6f3bdb2b6f65c90/public/images/add-artwork.png" alt = "Add Artworks" />
 
